@@ -1,10 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { toggleMenu } from "../utils/appSlice";
+import { Link } from "react-router-dom";
+import { YOUTUBE_SEARCH_API } from "../utils/constants";
 
 const Header = () => {
+  const [searchQuery, setSearchQuery] = useState("");
   const dispatch = useDispatch();
 
+  const getSearchSuggestions = async () => {
+    const data = await fetch(YOUTUBE_SEARCH_API + searchQuery);
+    const json = await data.json();
+    console.log(json);
+  };
+  useEffect(() => {
+    console.log(searchQuery);
+    const timer = setTimeout(() => getSearchSuggestions(), 200);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [searchQuery]);
   const toggleMenuHandler = () => {
     dispatch(toggleMenu());
   };
@@ -18,18 +34,25 @@ const Header = () => {
           alt="hamburger-menu"
           onClick={toggleMenuHandler}
         />
+        {/* <Link to="/"> */}
         <img
           className="h-8 mx-2"
           alt="logo"
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8TsMnYDoL7Uh8KGOHKXoeTYKRbt--bxOsofwPWm9UwqDss5TrsaruyDzy&s=10"
         />
+        {/* </Link> */}
       </div>
       <div className="col-span-10 text-center">
         <input
           className="w-1/2 border border-gray-500 p-2 rounded-l-full"
           type="text"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
         />
-        <button className="border border-gray-500 px-5 py-2 rounded-r-full bg-gray-100">
+        <button
+          // onClick={handleSearch}
+          className="border border-gray-500 px-5 py-2 rounded-r-full bg-gray-100"
+        >
           🔍
         </button>
       </div>
