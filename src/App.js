@@ -6,10 +6,17 @@ import appStore from "./utils/appStore";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import WatchPage from "./components/WatchPage";
 
+const AppLayout = () => (
+  <>
+    <Header />
+    <Body />
+  </>
+);
+
 const appRouter = createBrowserRouter([
   {
     path: "/",
-    element: <Body />,
+    element: <AppLayout />,
     children: [
       {
         path: "/",
@@ -25,10 +32,7 @@ const appRouter = createBrowserRouter([
 function App() {
   return (
     <Provider store={appStore}>
-      <div>
-        <Header />
-        <RouterProvider router={appRouter} />
-      </div>
+      <RouterProvider router={appRouter} />
     </Provider>
   );
 }

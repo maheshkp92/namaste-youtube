@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleMenu } from "../utils/appSlice";
 import { YOUTUBE_SEARCH_API } from "../utils/constants";
@@ -50,11 +51,13 @@ const Header = () => {
           onClick={toggleMenuHandler}
         />
 
-        <img
-          className="h-8 mx-2"
-          alt="logo"
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8TsMnYDoL7Uh8KGOHKXoeTYKRbt--bxOsofwPWm9UwqDss5TrsaruyDzy&s=10"
-        />
+        <Link to="/" className="flex items-center">
+          <img
+            className="h-8 mx-2"
+            alt="logo"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8TsMnYDoL7Uh8KGOHKXoeTYKRbt--bxOsofwPWm9UwqDss5TrsaruyDzy&s=10"
+          />
+        </Link>
       </div>
       <div className="col-span-10">
         <div>
