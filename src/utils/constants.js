@@ -5,6 +5,6 @@ export const YOUTUBE_VIDEO_LIST_API_URL =
   YOUTUBE_API_KEY;
 
 export const YOUTUBE_SEARCH_API =
-  "https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=surfing&key=" +
+  "https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&key=" +
   YOUTUBE_API_KEY +
   "&q=";
